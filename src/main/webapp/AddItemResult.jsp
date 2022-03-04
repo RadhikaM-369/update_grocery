@@ -22,14 +22,14 @@
 	<span style="color : red;"> ${messageT}</span>
 	<br>
 	<span style="color : red;"> ${messageB}</span>
-	<br>
+	<br>	
 	<span style="color : red;"> ${message1}</span>
-	
-		<br><br>		
+	<br><br>		
 		<a href="AddItem.jsp">Add another item</a>
 		<br><br>
 		
 		<a href="HomePage.jsp">GO HOME</a>
+		
 		</form>
 
 </body>
