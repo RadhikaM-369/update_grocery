@@ -26,4 +26,14 @@
   <url-pattern>/additem.do</url-pattern>
   </servlet-mapping>
   
+   <servlet-mapping>
+  <servlet-name>ds</servlet-name>
+  <url-pattern>/search.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  <servlet-name>ds</servlet-name>
+  <url-pattern>/update.do</url-pattern>
+  </servlet-mapping>
+  
   </web-app>

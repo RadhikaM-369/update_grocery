@@ -12,7 +12,6 @@
 	<h1>Grocery Application</h1>
 
 	<form action="additem.do" method="post">
-
 		<div>
 			<label>Name </label> <select name="name" id="name">
 				<option value="">-SELECT-</option>

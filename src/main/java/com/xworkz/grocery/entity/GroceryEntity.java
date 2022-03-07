@@ -5,14 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "grocery_info")
-public class GroceryEntity {
+@NamedQueries({
+		@NamedQuery(name = "findByName", query = "select grocery from GroceryEntity as grocery where grocery.name=:nm"),
+		@NamedQuery(name = "updateBrandByName", query = "update GroceryEntity set brand=:nbrand where name=:nm")})
+public class GroceryEntity {							
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
@@ -27,8 +34,6 @@ public class GroceryEntity {
 	private String type;
 	@Column(name = "BRAND")
 	private String brand;
-	/*@Column(name = "TOTAL")
-	private int total;*/
 	public GroceryEntity(String name, int qty, int price, String type, String brand) {
 		super();
 		this.name = name;
@@ -37,5 +42,4 @@ public class GroceryEntity {
 		this.type = type;
 		this.brand = brand;
 	}
-
 }

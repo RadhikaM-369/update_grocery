@@ -12,7 +12,8 @@
 	<form action="item.do" method="post">
 	
 		<div> <a href="AddItem.jsp"> add item </a> </div>
-		<div> Search</div>
+		<div> <a href="Search.jsp"> Search item</a> </div>
+		<div> <a href="UpdateItem.jsp"> Update Item </a> </div>
 		
 		</form>
 </body>

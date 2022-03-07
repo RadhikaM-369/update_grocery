@@ -13,13 +13,19 @@
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 	</bean>
-		<bean id="driverManagerDataSource"
+			
+	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		
-		<property name="url" value="jdbc:mysql://localhost:3306/hibernate" />
- 		<property name="username" value="root" />
- 		<property name="password" value="SQL123456789" />
-		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<constructor-arg value="${jdbc.url}"></constructor-arg>
+		<constructor-arg value="${jdbc.username}"></constructor-arg>
+		<constructor-arg value="${jdbc.password}"></constructor-arg>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 	</bean>
+
+	<bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:application.properties"></property>
+	</bean>
+	
    
 </beans>

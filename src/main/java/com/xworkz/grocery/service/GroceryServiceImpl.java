@@ -2,15 +2,15 @@ package com.xworkz.grocery.service;
 
 import javax.persistence.PersistenceException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
+import com.xworkz.grocery.dto.GroceryDTO;
 import com.xworkz.grocery.entity.GroceryEntity;
 import com.xworkz.grocery.repository.GroceryRepository;
 
 @Service
 public class GroceryServiceImpl implements GroceryService {
-	@Autowired
+	//@Autowired
 	private GroceryRepository repo;
 
 	public GroceryServiceImpl(GroceryRepository repo) {
@@ -68,5 +68,55 @@ public class GroceryServiceImpl implements GroceryService {
 		}
 		return valid;
 	}
-
+	public GroceryDTO validateAndFindbyName(String name) {
+		boolean valid=false;
+		if (name == null || name.isEmpty() == true || name.length()<3 || name.length()>20) {
+			valid = false;
+			System.out.println("Invalid name");
+		} else {
+			valid = true;
+			System.out.println("Valid name");
+		}
+		if(valid=true) {
+			GroceryEntity entity=this.repo.findByName(name);
+			GroceryDTO dto=new GroceryDTO();
+			dto.setName(entity.getName());
+			dto.setQty(entity.getQty());
+			dto.setPrice(entity.getPrice());
+			dto.setType(entity.getType());
+			dto.setBrand(entity.getBrand());
+			//BeanUtils.copyProperties(entity, dto);
+			return dto;
+		}
+		return GroceryService.super.validateAndFindbyName(name);
+	}
+	public GroceryDTO validateAndUpdatebyName(String name, String newBrand) {
+		boolean valid=false;
+		if (name==null || name.isEmpty()==true || name.length()<3 || name.length()> 20) {
+			valid = false;
+			System.out.println("Invalid name");
+		} else {
+			valid = true;
+			System.out.println("Valid name");
+		}
+		if(newBrand==null || newBrand.isEmpty()==true) {
+			valid = false;
+			System.out.println("Invalid Brand");
+		} else {
+			valid = true;
+			System.out.println("Valid Brand");
+		}
+		if(valid=true) {
+			GroceryEntity entity=this.repo.updateBrandByName(name, newBrand);
+			GroceryDTO dto=new GroceryDTO();
+			dto.setName(entity.getName());
+			dto.setQty(entity.getQty());
+			dto.setPrice(entity.getPrice());
+			dto.setType(entity.getType());
+			dto.setBrand(entity.getBrand());
+			//BeanUtils.copyProperties(entity, dto);
+			return dto;
+		}
+		return GroceryService.super.validateAndUpdatebyName(name, newBrand);
+	}
 }
